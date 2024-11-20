@@ -1,7 +1,6 @@
 {
   "name": "reminderlist",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon"
@@ -12,12 +11,13 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "http",
+  "homepage": "http://http",
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.1",
-    "express-ejs-layouts": "^2.2.0",
+    "express-ejs-layouts": "^2.5.1",
     "method-override": "^2.3.7",
     "nodemon": "^3.1.7"
-  }
+  },
+  "description": ""
 }
