@@ -1,6 +1,6 @@
 const database = [
   {
-    id: 1,
+    id: 1,  
     name: "Jimmy Smith",
     email: "jimmy123@gmail.com",
     password: "jimmy123!",

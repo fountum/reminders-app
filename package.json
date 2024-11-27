@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
+    "db": "npx prisma db push",
     "studio": "npx prisma studio"
   },
   "repository": {
@@ -15,6 +16,7 @@
   "license": "ISC",
   "homepage": "http",
   "dependencies": {
+    "@prisma/client": "^5.22.0",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-ejs-layouts": "^2.2.0",
