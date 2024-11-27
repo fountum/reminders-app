@@ -1,8 +1,16 @@
-let database = require("../database");
+const { PrismaClient } = require("@prisma/client");
+const db = new PrismaClient();
 
 let remindersController = {
-  list: (req, res) => {
-    res.render("reminder/index", { reminders: database.cindy.reminders });
+  list: async (req, res) => {
+    const userId = 1;
+    const reminders = await db.reminder.findMany(
+      {
+        where: {userId: userId}
+      }
+    ) 
+    console.log(reminders)
+    res.render("reminder/index", { reminders: reminders });
   },
 
   new: (req, res) => {
