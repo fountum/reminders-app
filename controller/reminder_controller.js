@@ -30,14 +30,15 @@ let remindersController = {
     }
   },
 
-  create: (req, res) => {
-    let reminder = {
-      id: database.cindy.reminders.length + 1,
-      title: req.body.title,
-      description: req.body.description,
-      completed: false,
-    };
-    database.cindy.reminders.push(reminder);
+  create: async (req, res) => {
+    const reminder = await db.reminder.create({
+      data: {
+          title: req.body.title,
+          description: req.body.description,
+          completed: false,
+          userId: 1 //fix this later, req.user.id
+      }
+    })
     res.redirect("/reminders");
   },
 
