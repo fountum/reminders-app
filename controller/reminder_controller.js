@@ -42,23 +42,33 @@ let remindersController = {
     res.redirect("/reminders");
   },
 
-  edit: (req, res) => {
-    let reminderToFind = req.params.id;
-    let searchResult = database.cindy.reminders.find(function (reminder) {
-      return reminder.id == reminderToFind;
-    });
-    res.render("reminder/edit", { reminderItem: searchResult });
+  edit: async (req, res) => {
+    let reminderToFind = Number(req.params.id);
+    const reminder = await db.reminder.findUnique(
+      {
+        where: {id:reminderToFind}
+      }
+    );
+    if (reminder != undefined) {
+      res.render("reminder/edit", { reminderItem: reminder });
+    } else {
+      res.redirect('/reminders');
+    }
   },
 
-  update: (req, res) => {
-    let reminder = {
-      id: Number(req.params.id), // Huh?
-      title: req.body.title,
-      description: req.body.description,
-      completed: Boolean(req.body.completed),
-    };
-    const index = database.cindy.reminders.findIndex((reminder) => reminder.id==req.params.id)
-    database.cindy.reminders.splice(index, 1, reminder)
+  update: async (req, res) => {
+    const updateReminder = await db.reminder.update({
+      where: {
+        id: Number(req.params.id),
+      },
+      data: {
+        title: req.body.title,
+        description: req.body.description,
+        completed: Boolean(req.body.completed),
+        userId: 1 // fix this later
+      }
+    }) 
+
     res.redirect("/reminders");
   },
 
