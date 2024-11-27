@@ -8,8 +8,7 @@ let remindersController = {
       {
         where: {userId: userId}
       }
-    ) 
-    console.log(reminders)
+    );
     res.render("reminder/index", { reminders: reminders });
   },
 
@@ -17,15 +16,17 @@ let remindersController = {
     res.render("reminder/create");
   },
 
-  listOne: (req, res) => {
-    let reminderToFind = req.params.id;
-    let searchResult = database.cindy.reminders.find(function (reminder) {
-      return reminder.id == reminderToFind;
-    });
-    if (searchResult != undefined) {
-      res.render("reminder/single-reminder", { reminderItem: searchResult });
+  listOne: async (req, res) => {
+    let reminderToFind = Number(req.params.id);
+    const reminder = await db.reminder.findUnique(
+      {
+        where: {id:reminderToFind}
+      }
+    );
+    if (reminder != undefined) {
+      res.render("reminder/single-reminder", { reminderItem: reminder });
     } else {
-      res.render("reminder/index", { reminders: database.cindy.reminders });
+      res.redirect('/reminders');
     }
   },
 
