@@ -1,4 +1,6 @@
 const express = require("express");
+const session = require("express-session");
+const passport = require("./middleware/passport");
 const app = express();
 const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
@@ -6,6 +8,22 @@ const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
 
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 
