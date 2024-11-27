@@ -19,5 +19,8 @@
     "express-ejs-layouts": "^2.2.0",
     "method-override": "^2.3.7",
     "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0"
   }
 }
