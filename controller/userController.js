@@ -1,4 +1,3 @@
-const userModel = require("../models/userModel").userModel;
 const { PrismaClient } = require("@prisma/client");
 const db = new PrismaClient();
 
@@ -21,10 +20,6 @@ const getUserById = async (id) => {
   if (user) return user;
   return null;
 };
-
-function isUserValid(user, password) {
-  return user.password === password;
-}
 
 module.exports = {
   getUserByEmailIdAndPassword,
