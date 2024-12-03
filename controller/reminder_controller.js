@@ -3,10 +3,9 @@ const db = new PrismaClient();
 
 let remindersController = {
   list: async (req, res) => {
-    const userId = 1;
     const reminders = await db.reminder.findMany(
       {
-        where: {userId: userId}
+        where: {userId: req.user.id}
       }
     );
     res.render("reminder/index", { reminders: reminders });
@@ -36,7 +35,7 @@ let remindersController = {
           title: req.body.title,
           description: req.body.description,
           completed: false,
-          userId: 1 //fix this later, req.user.id
+          userId: req.user.id,
       }
     })
     res.redirect("/reminders");
@@ -65,7 +64,7 @@ let remindersController = {
         title: req.body.title,
         description: req.body.description,
         completed: Boolean(req.body.completed),
-        userId: 1 // fix this later
+        userId: req.user.id,
       }
     }) 
 

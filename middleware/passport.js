@@ -56,8 +56,8 @@ passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-  let user = userController.getUserById(id);
+passport.deserializeUser(async function (id, done) {
+  let user = await userController.getUserById(id);
   if (user) {
     done(null, user); // creates req.user
   } else {
