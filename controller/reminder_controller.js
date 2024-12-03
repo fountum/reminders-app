@@ -72,8 +72,14 @@ let remindersController = {
     res.redirect("/reminders");
   },
 
-  delete: (req, res) => {
-    // Implement this code
+  delete: async (req, res) => {
+    const deleteReminder = await db.reminder.delete({
+      where: {
+        id: Number(req.params.id),
+      },
+    })
+
+    res.redirect("/reminders");
   },
 };
 
