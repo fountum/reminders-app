@@ -5,7 +5,7 @@ const getUserByEmailIdAndPassword = async (email, password) => {
   const user = await db.user.findUnique(
     {
       where: {
-        email: email,
+        email: email.toLowerCase(),
         password: password
       }
     }
