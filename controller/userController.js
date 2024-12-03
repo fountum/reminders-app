@@ -14,11 +14,11 @@ const getUserByEmailIdAndPassword = async (email, password) => {
   if (user) return user;
   return null;
 };
-const getUserById = (id) => {
-  let user = userModel.findById(id);
-  if (user) {
-    return user;
-  }
+const getUserById = async (id) => {
+  const user = await db.user.findUnique({
+    where: {id:id}
+  })
+  if (user) return user;
   return null;
 };
 
