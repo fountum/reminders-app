@@ -13,12 +13,15 @@ let authController = {
   loginSubmit: 
     passport.authenticate("local", {
     successRedirect: "/reminders",
-    failureRedirect: "/",
+    failureRedirect: "/login",
   }),
 
-  registerSubmit: (req, res) => {
-    // implement
-  },
+  registerSubmit:
+    passport.authenticate('local-signup', {
+      successRedirect: '/reminders',
+      failureRedirect: '/register',
+  })
+  
 };
 
 module.exports = authController;
