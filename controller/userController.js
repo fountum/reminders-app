@@ -1,25 +1,25 @@
-const userModel = require("../models/userModel").userModel;
+const { PrismaClient } = require("@prisma/client");
+const db = new PrismaClient();
 
-const getUserByEmailIdAndPassword = (email, password) => {
-  let user = userModel.findOne(email);
-  if (user) {
-    if (isUserValid(user, password)) {
-      return user;
+const getUserByEmailIdAndPassword = async (email, password) => {
+  const user = await db.user.findUnique(
+    {
+      where: {
+        email: email.toLowerCase(),
+        password: password
+      }
     }
-  }
+  );
+  if (user) return user;
   return null;
 };
-const getUserById = (id) => {
-  let user = userModel.findById(id);
-  if (user) {
-    return user;
-  }
+const getUserById = async (id) => {
+  const user = await db.user.findUnique({
+    where: {id:id}
+  })
+  if (user) return user;
   return null;
 };
-
-function isUserValid(user, password) {
-  return user.password === password;
-}
 
 module.exports = {
   getUserByEmailIdAndPassword,
