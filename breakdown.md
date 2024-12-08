@@ -7,6 +7,7 @@
   
 **Karn**  
 **Milan**  
+1. Milan and Karn implemented the deleting a reminder feature. 
 
 ### Week of Nov. 27 2024 (week 2)  
 **Steven Duong**  
