@@ -39,3 +39,9 @@
 
    5. Updated index.js to include new routes and middleware for admin session management.
 
+   **Milan**
+
+   1. Made general UI improvements
+
+   2. Helped Karn in implementing the admin features
+
